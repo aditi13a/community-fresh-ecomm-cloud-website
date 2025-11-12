@@ -13,7 +13,7 @@ body {
   scroll-behavior: smooth;
 }
 
-/* NAVBAR */
+/* 🌿 NAVBAR FIX */
 .navbar {
   width: 100%;
   position: fixed;
@@ -22,35 +22,124 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 60px;
+  padding: 15px 50px;
   background-color: transparent;
-  transition: 0.3s;
+  transition: 0.3s ease;
   z-index: 1000;
 }
+
 .navbar.scrolled {
   background-color: #a8e6cf;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
+
+/* Logo (Left Side) */
 .navbar .logo {
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: #388e3c;
+  flex: 1; /* keeps it left-aligned */
 }
+
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #2d5934;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.nav-links li a:hover {
+  color: #4CAF50;
+}
+
+/* 📍 LOCATION SECTION BELOW NAVBAR */
+.location-wrapper {
+  display: flex;
+  justify-content: center;
+  background: #eef9f0;
+  padding: 20px;
+  border-bottom: 1px solid #d8ebda;
+}
+
+/* Center Searchbar */
+.location-section {
+  flex: 2; /* takes center space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.location-dropdown {
+  display: inline-flex;
+  align-items: center;
+  background: white;
+  border-radius: 25px;
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.location-dropdown:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.dropdown-symbol {
+  margin-right: 8px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  color: #4CAF50;
+  font-size: 18px;
+}
+
+.dropdown-symbol.open {
+  transform: rotate(180deg);
+}
+
+#autocomplete {
+  border: none;
+  outline: none;
+  font-size: 15px;
+  width: 260px;
+  font-family: 'Poppins', sans-serif;
+}
+
+#location-result {
+  display: none; /* hide text output in navbar */
+}
+
+
+/* Right Side Navbar Links */
 .navbar .nav-links {
   list-style: none;
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
   gap: 25px;
+  flex: 1; /* right-aligned */
+  margin: 0;
 }
+
 .navbar .nav-links a {
   text-decoration: none;
   color: #333;
   font-weight: 500;
+  font-size: 16px;
   transition: 0.3s;
 }
+
 .navbar .nav-links a:hover {
   color: #2e7d32;
   border-bottom: 2px solid #2e7d32;
 }
+
 
 /* HERO */
 .hero {

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Reviews 🌿 | Community Fresh</title>
+  <link rel="stylesheet" href="style_modern.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8fcf9;
+      margin: 0;
+      padding-top: 110px; /* Adjusted for fixed navbar height */
+      color: #333;
+    }
+
+    .reviews-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2e7d32;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    form {
+      background-color: #f2f8f3;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    form input, form textarea, form select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    form textarea {
+      height: 100px;
+      resize: none;
+    }
+
+    form button {
+      background-color: #4CAF50;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      border-radius: 25px;
+      padding: 10px 25px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    form button:hover {
+      background-color: #388e3c;
+    }
+
+    .reviews-list {
+      margin-top: 20px;
+    }
+
+    .review-card {
+      background: #f9fff9;
+      border: 1px solid #dcefdc;
+      border-radius: 12px;
+      padding: 15px 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      transition: transform 0.2s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .review-name {
+      font-weight: 600;
+      color: #2e7d32;
+    }
+
+    .review-rating {
+      color: #FFD700;
+      font-size: 1.1rem;
+    }
+
+    .review-message {
+      color: #444;
+      font-size: 0.95rem;
+      margin-top: 8px;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 25px;
+      color: #2e7d32;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 🌿 NAVBAR -->
+  <header>
+    <nav class="navbar">
+      <!-- Logo (Left) -->
+      <div class="logo">🌿 Community Fresh</div>
+
+      <!-- 📍 Searchbar (Center) -->
+      <div class="location-section">
+        <div class="location-dropdown" onclick="toggleDropdown()">
+          <span class="dropdown-symbol">⌄</span>
+          <input id="autocomplete" type="text" placeholder="Enter your location" />
+        </div>
+        <p id="location-result"></p>
+      </div>
+
+      <!-- Links (Right) -->
+      <ul class="nav-links">
+        <li><a href="index_modern.html">Home</a></li>
+        <li><a href="#products" class="scroll-link">Shop</a></li>
+        <li><a href="orders_modern.html">Orders</a></li>
+        <li><a href="reviews.html" class="active">Reviews</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="reviews-container">
+    <h1>Customer Reviews 💬</h1>
+
+    <form id="reviewForm">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+
+      <label for="rating">Rating</label>
+      <select id="rating" required>
+        <option value="">Select Rating</option>
+        <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+        <option value="4">⭐⭐⭐⭐ Good</option>
+        <option value="3">⭐⭐⭐ Average</option>
+        <option value="2">⭐⭐ Poor</option>
+        <option value="1">⭐ Terrible</option>
+      </select>
+
+      <label for="message">Your Review</label>
+      <textarea id="message" placeholder="Share your experience..." required></textarea>
+
+      <button type="submit">Submit Review</button>
+    </form>
+
+    <div class="reviews-list" id="reviewsList">
+      <!-- Reviews will appear here -->
+    </div>
+
+    <a href="index_modern.html" class="back-link">← Back to Home</a>
+  </div>
+
+  <!-- 🌍 GOOGLE MAPS SCRIPT (Searchbar Autocomplete) -->
+  <script>
+    function initAutocomplete() {
+      const input = document.getElementById("autocomplete");
+      if (!input) return;
+      const autocomplete = new google.maps.places.Autocomplete(input);
+      autocomplete.addListener("place_changed", function() {
+        const place = autocomplete.getPlace();
+        if (!place.geometry) return;
+        const locationResult = document.getElementById("location-result");
+        locationResult.textContent = "📍 " + place.formatted_address;
+      });
+    }
+
+    function toggleDropdown() {
+      const dropdownSymbol = document.querySelector(".dropdown-symbol");
+      const inputField = document.getElementById("autocomplete");
+      if (dropdownSymbol) dropdownSymbol.classList.toggle("open");
+      if (inputField) inputField.focus();
+    }
+  </script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSuVPeDNAnSMCrKd_0xvdm3_klscX6jcw&libraries=places&callback=initAutocomplete">
+  </script>
+
+  <!-- 💬 REVIEWS SCRIPT -->
+  <script>
+    // Load reviews from localStorage
+    function loadReviews() {
+      const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+      const list = document.getElementById("reviewsList");
+      list.innerHTML = "";
+
+      if (reviews.length === 0) {
+        list.innerHTML = "<p style='text-align:center; color:#666;'>No reviews yet. Be the first to share your thoughts! 🌿</p>";
+        return;
+      }
+
+      reviews.forEach(review => {
+        const div = document.createElement("div");
+        div.classList.add("review-card");
+        div.innerHTML = `
+          <div class="review-header">
+            <span class="review-name">${review.name}</span>
+            <span class="review-rating">${"⭐".repeat(review.rating)}</span>
+          </div>
+          <div class="review-message">${review.message}</div>
+        `;
+        list.prepend(div);
+      });
+    }
+
+    // Submit review form
+    document.getElementById("reviewForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const rating = parseInt(document.getElementById("rating").value);
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !rating || !message) {
+        alert("Please fill all fields!");
+        return;
+      }
+
+      const newReview = { name, rating, message, date: new Date().toISOString() };
+      const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+      reviews.push(newReview);
+      localStorage.setItem("reviews", JSON.stringify(reviews));
+
+      document.getElementById("reviewForm").reset();
+      loadReviews();
+      alert("Thank you for your feedback 🌿");
+    });
+
+    loadReviews();
+  </script>
+</body>
+</html>
