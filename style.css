@@ -1,0 +1,289 @@
+body{
+    background-color: rgb(219, 219, 219);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+} 
+
+ul, li{
+    margin: 20;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar{
+    background-color: hsl(0, 0%, 100%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .nav-links {
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-end; /* Align links to the right */
+    gap: 20px;
+}
+
+.nav-links li {
+    display: inline;
+    
+}
+
+.nav-links a {
+    color: rgb(19, 17, 17);
+    text-decoration: none;
+    left: 50%;
+    font-weight: 500;
+    padding: 5px 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #00B86C; /* Highlight on hover */
+}
+
+.navbar .logo {
+    display: flex; /* Ensures items are laid out in a row */
+    align-items: center; /* Vertically aligns items in the same line */
+    gap: 5px; /* Adds space between "Minute" and "Mart" */
+    font-size: 24px; /* Adjust as needed */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+}
+
+/* .navbar .logo-img{
+    width: 80px;
+    height: 80px;
+} */
+
+.navbar.location {
+    position: relative;
+}
+
+.navbar.location-input {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+#location-result {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Wrapper for location input and dropdown symbol */
+.location-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between input and dropdown symbol */
+    border: 1px solid #ccc; /* Add a light border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px 10px; /* Add some padding for better appearance */
+    background-color: #f9f9f9; /* Light background */
+    width: 300px; /* Adjust width as needed */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+/* Style for the input field */
+.location-input {
+    border: none; /* Remove default border */
+    outline: none; /* Remove outline on focus */
+    font-size: 16px; /* Adjust font size */
+    flex-grow: 1; /* Let the input take remaining space */
+    background-color: transparent; /* Match wrapper's background */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Style for the dropdown symbol */
+.dropdown-symbol {
+    font-size: 16px; /* Size of the dropdown symbol */
+    color: #333; /* Dark gray color */
+    cursor: pointer; /* Pointer cursor for interaction */
+    transition: transform 0.3s ease; /* Smooth rotation for animation */
+}
+
+/* Rotate symbol on dropdown open */
+.dropdown-symbol.open {
+    transform: rotate(180deg);
+}
+
+/* Dropdown suggestions container */
+.suggestions {
+    position: absolute;
+    top: 100%; /* Below the input box */
+    left: 10;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    max-height: 200px; /* Limit height */
+    overflow-y: auto; /* Scroll if too many suggestions */
+}
+
+/* Individual suggestion */
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.suggestion-item:hover {
+    background-color: #f1f1f1; /* Highlight on hover */
+}
+
+.banner {
+    position: relative;
+    left: 10%;
+    width: 100%;
+    height: 430px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 40px;
+    overflow: hidden;
+    width: 80%;
+}
+
+.banner-section {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #3498db;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    font-size: 2rem;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.banner .banner-section:nth-child(1) {
+    background-color: #000000;
+    background-image: url('slide1.jpg');
+}
+
+.banner .banner-section:nth-child(2) {
+    background-color: #000000;
+    background-image: url('slide2.jpg');
+    opacity: 70%;
+}
+
+.banner .banner-section:nth-child(3) {
+    background-image: url('slide3.jpg');
+    background-color: rgb(255, 65, 125);
+}
+
+.banner .banner-section:nth-child(4) {
+    background-image: url('slide4.jpg');
+    background-color: #00B86C;
+}
+
+.active {
+    opacity: 50;
+    z-index: 2;
+}
+
+/* Indicators (dots) */
+.indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10; /* Ensure dots are always above the slides */
+    background: rgba(255, 255, 255, 0.023); /* Add semi-transparent background for visibility */
+    padding: 5px 15px;
+    border-radius: 20px; /* Smooth rounded edges */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.089); /* Add a shadow for better visibility */
+}
+
+.dot {
+    width: 5.5px;
+    height: 5.5px;
+    border-radius: 50%;
+    background-color: #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dot.active {
+    background-color: #00B86C;
+    transform: scale(1.2); /* Slightly enlarge the active dot for emphasis */
+}
+
+.heading{
+    position: relative;
+    left: 151px;
+    top: 90px; 
+}
+
+.explorecategories {
+    position: relative;
+    top: 150px;
+    width: 90%; /* Adjust the width as needed */
+    margin: 0 auto; /* Horizontally center the container */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    flex-wrap: wrap; /* Ensure it wraps on smaller screens */
+    text-align: center; /* Align text inside the container */
+    font-weight: lighter;
+}
+
+.cat-links {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line on smaller screens */
+    justify-content: space-around; /* Evenly distribute space between items */
+    gap: 50px; /* Adjust the gap for consistency */
+    padding: 0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: lighter;
+    transition: background-color 0.3s ease;
+}
+
+.cat-links li {
+    display: flex;
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center; /* Center-align content */
+    text-align: center;
+    font-weight: lighter;
+    margin-bottom: 20px; /* Add space below each item */
+}
+
+.category-img {
+    width: 230px; /* Adjusted for better proportions */
+    height: 230px;
+    object-fit: cover;
+    border-radius: 10px; /* Smooth corners */
+    margin-bottom: 10px; /* Space between image and text */
+    transition: transform 0.3s ease; /* Add hover effect */
+}
+
+.category-img:hover {
+    transform: scale(1.05); /* Slight zoom-in effect on hover */
+}
+
+.cat-links a {
+    color: rgb(19, 17, 17); /* Apply text color */
+    text-decoration: none; /* Remove underline */
+    font-weight: 500; /* Slightly bolder font */
+    font-size: 1rem;
+    transition: color 0.3s ease; /* Smooth color change */
+    font-weight: 350;
+}
+
+

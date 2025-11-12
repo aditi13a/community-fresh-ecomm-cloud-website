@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Fresh Market</title>
+  <link rel="stylesheet" href="style_modern.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<!-- 🌿 NAVBAR -->
+<header>
+  <nav class="navbar">
+    <div class="logo">🌿 Community Fresh</div>
+    <ul class="nav-links">
+      <li><a href="index_modern.html">Home</a></li>
+      <li><a href="products_modern.html">Shop</a></li>
+      <li><a href="orders_modern.html">Orders</a></li>
+      <li><a href="reviews_modern.html">Reviews</a></li>
+    </ul>
+    <div class="cart-icon">
+      🛒 <span id="cart-count">0</span>
+    </div>
+  </nav>
+</header>
+
+
+
+  <!-- 🍃 HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Fresh Groceries, Straight from Your Community</h1>
+      <p>Order daily essentials and fresh produce from local vendors — faster, greener, and better.</p>
+      <a href="#products" class="btn-primary">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- 🛒 FEATURED PRODUCTS -->
+  <section id="products" class="products-section">
+    <h2 class="section-title">Featured Products</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="Fruits.png" alt="Fruits">
+        <h3>Fresh Fruits</h3>
+        <p>Natural and juicy handpicked fruits.</p>
+        <button class="btn-secondary">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="Vegetables.png" alt="Vegetables">
+        <h3>Organic Vegetables</h3>
+        <p>Locally grown, pesticide-free veggies.</p>
+        <button class="btn-secondary">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="Milk.png" alt="Milk">
+        <h3>Dairy Products</h3>
+        <p>Fresh milk and butter every morning.</p>
+        <button class="btn-secondary">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="Grocery.png" alt="Groceries">
+        <h3>Groceries</h3>
+        <p>Daily essentials delivered to your door.</p>
+        <button class="btn-secondary">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🌍 COMMUNITY BANNER -->
+  <section class="community-banner">
+    <h2>Trusted by 200+ Families in Your Neighborhood 🌱</h2>
+  </section>
+
+  <!-- 🦶 FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <p>© 2025 Community Fresh Market — Built with ❤️ using Open-Source Cloud (Nextcloud)</p>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener("scroll", () => {
+      const nav = document.querySelector(".navbar");
+      nav.classList.toggle("scrolled", window.scrollY > 50);
+    });
+  </script>
+  
+</body>
+</html>

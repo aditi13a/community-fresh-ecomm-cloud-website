@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - Community Fresh</title>
+  <link rel="stylesheet" href="style_modern.css">
+</head>
+
+<body>
+<!-- 🌿 NAVBAR -->
+<header>
+  <nav class="navbar">
+    <div class="logo">🌿 Community Fresh</div>
+    <ul class="nav-links">
+      <li><a href="index_modern.html">Home</a></li>
+      <li><a href="products_modern.html">Shop</a></li>
+      <li><a href="orders_modern.html">Orders</a></li>
+      <li><a href="reviews_modern.html">Reviews</a></li>
+    </ul>
+    <div class="cart-icon">
+      🛒 <span id="cart-count">0</span>
+    </div>
+  </nav>
+</header>
+
+
+  <!-- PRODUCT LISTING -->
+  <section class="products-section" style="padding-top: 120px;">
+    <h2 class="section-title">Our Daily Essentials</h2>
+    <p class="subtitle">Handpicked items from your trusted local vendors 🌱</p>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="Fruits.png" alt="Fresh Fruits">
+        <h3>Fresh Fruits</h3>
+        <p>Seasonal fruits delivered fresh every day.</p>
+        <button class="btn-secondary">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="Vegetables.png" alt="Organic Vegetables">
+        <h3>Organic Vegetables</h3>
+        <p>Locally sourced and pesticide-free produce.</p>
+        <button class="btn-secondary">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="Milk.png" alt="Dairy Products">
+        <h3>Dairy Products</h3>
+        <p>Fresh milk, butter, and cheese from local farms.</p>
+        <button class="btn-secondary">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="Grocery.png" alt="Groceries">
+        <h3>Groceries</h3>
+        <p>Daily essentials delivered to your door.</p>
+        <button class="btn-secondary">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Community Fresh Market — Freshness Delivered from Your Neighborhood 🌿</p>
+  </footer>
+
+  <script>
+    // Navbar scroll behavior
+    window.addEventListener("scroll", () => {
+      const nav = document.querySelector(".navbar");
+      nav.classList.toggle("scrolled", window.scrollY > 50);
+    });
+  </script>
+</body>
+</html>
